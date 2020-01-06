@@ -1,0 +1,22 @@
+{
+  "name": "learn-nodejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "hello_world.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sincerity628/learn-nodejs.git"
+  },
+  "author": "becca",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sincerity628/learn-nodejs/issues"
+  },
+  "homepage": "https://github.com/sincerity628/learn-nodejs#readme",
+  "dependencies": {
+    "underscore": "^1.9.1"
+  }
+}
