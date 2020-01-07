@@ -23,6 +23,22 @@ connection.connect(error => {
   console.log('Connected!');
 });
 
+app.get('/products/add', (req, res) => {
+  const { productName, price } = req.query;
+
+  const INSERT_PRODUCT_QUERY =
+  `insert into products(productName, price)
+   values('${productName}', ${price})`;
+
+  connection.query(INSERT_PRODUCT_QUERY, (error, results) => {
+    if(error) {
+      return res.send(error);
+    } else {
+      return res.send(`insert ${productName} succcessfully.`);
+    }
+  })
+});
+
 app.get('/products', (req, res) => {
   connection.query(SELECT_ALL_PRODUCTS_QUERY, (error, results) => {
     if(error) {
