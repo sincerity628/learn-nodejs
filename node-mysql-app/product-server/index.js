@@ -44,9 +44,7 @@ app.get('/products', (req, res) => {
     if(error) {
       return res.send(error);
     } else {
-      return res.json({
-        data: results
-      });
+      return res.send(results);
     }
   })
 });
