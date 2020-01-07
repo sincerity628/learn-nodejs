@@ -5,6 +5,9 @@ const mysql = require('mysql');
 const app = express();
 app.use(cors());
 
+// query
+const SELECT_ALL_PRODUCTS_QUERY = 'select * from products';
+
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
@@ -18,6 +21,18 @@ connection.connect(error => {
     return error;
   }
   console.log('Connected!');
+});
+
+app.get('/products', (req, res) => {
+  connection.query(SELECT_ALL_PRODUCTS_QUERY, (error, results) => {
+    if(error) {
+      return res.send(error);
+    } else {
+      return res.json({
+        data: results
+      });
+    }
+  })
 });
 
 app.get('/', (req, res) => {
