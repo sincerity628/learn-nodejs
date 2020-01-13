@@ -1,12 +1,13 @@
 const express = require('express');
 const path = require('path');
-const members = require('./data/members');
+const logger = require('./middleware/logger');
 
 const app = express();
+// init middleware logger
+app.use(logger);
 
-// get all members
-app.get('/api/members', (req, res) => res.json(members));
-
+// member api
+app.use('/api/members', require('./route/api/members'));
 
 
 const PORT = process.env.PORT || 8080;
