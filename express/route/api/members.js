@@ -21,6 +21,7 @@ router.post('/', (req, res) => {
   const newMember = {
     id: uuid.v1(),
     name: req.body.name,
+    emial: req.body.email,
     status: 'active'
   };
 
@@ -33,6 +34,31 @@ router.post('/', (req, res) => {
   members.push(newMember);
   res.json(members);
 });
+// update a member
+router.put('/:id', (req, res) => {
+  let found = members.some(member => member.id === req.params.id);
+  if(found) {
+    const updateMember = {
+      name: req.body.name,
+      email: req.body.email
+    };
+    members.forEach(member => {
+      if(member.id === req.params.id) {
+        member.name = updateMember.name ? updateMember.name : member.name;
+        member.email = updateMember.email ? updateMember.email : member.email;
+        return res.json({
+          msg: 'member updated',
+          member
+        });
+      }
+    });
+  } else {
+    res.status(400).json({
+      msg: `member with id ${req.params.id} not found.`
+    });
+  }
+})
+
 
 
 module.exports = router;
