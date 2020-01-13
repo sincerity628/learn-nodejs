@@ -5,6 +5,7 @@ const members = require('../../data/members');
 
 // get all members
 router.get('/', (req, res) => res.json(members));
+
 // get a single member
 router.get('/:id', (req, res) => {
   let found = members.some(member => member.id === req.params.id);
@@ -16,6 +17,7 @@ router.get('/:id', (req, res) => {
     });
   }
 });
+
 // create a member
 router.post('/', (req, res) => {
   const newMember = {
@@ -34,6 +36,7 @@ router.post('/', (req, res) => {
   members.push(newMember);
   res.json(members);
 });
+
 // update a member
 router.put('/:id', (req, res) => {
   let found = members.some(member => member.id === req.params.id);
@@ -57,7 +60,26 @@ router.put('/:id', (req, res) => {
       msg: `member with id ${req.params.id} not found.`
     });
   }
-})
+});
+
+// delete a member
+router.delete('/:id', (req, res) => {
+  let found = members.some(member => member.id === req.params.id);
+  if(found) {
+    let index = members.findIndex(member => member.id === req.params.id);
+    members.splice(index, 1);
+    
+    res.json({
+      msg: 'member deleted.',
+      members
+    });
+  } else {
+    res.status(400).json({
+      msg: `member with id ${req.params.id} not found.`
+    });
+  }
+});
+
 
 
 

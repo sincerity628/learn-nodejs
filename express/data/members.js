@@ -1,4 +1,4 @@
-const members = [
+let members = [
   { id: '1', name: 'becca', email: 'becca@gmail.com', status: 'active' },
   { id: '2', name: 'fei', email: 'fei@gmail.com', status: 'inactive' },
   { id: '3', name: 'jasmine', email: 'jasmine@gmail.com', status: 'active' },
